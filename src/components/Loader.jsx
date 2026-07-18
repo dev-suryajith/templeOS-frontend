@@ -7,7 +7,7 @@ function Loader() {
     useEffect(()=>{
         setTimeout(()=>{
             navigate('/generate-receipt')
-        },2500)
+        },5000)
     })
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-[#FFF9F2]">
