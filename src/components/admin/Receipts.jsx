@@ -119,88 +119,88 @@ function Receipts() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
 
             {/* Statistics */}
 
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 sm:gap-5 xl:grid-cols-4">
 
-                <div className="rounded-2xl border border-[#E7D4B4] bg-white p-5 shadow-sm">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm text-[#9A6428]">Total Receipts</p>
+                <div className="rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white p-4 sm:p-5 shadow-sm">
+                    <div className="flex items-center justify-between gap-3">
+                        <div className="min-w-0">
+                            <p className="text-xs sm:text-sm text-[#9A6428]">Total Receipts</p>
 
-                            <h2 className="mt-2 text-3xl font-bold text-[#4A2108]">
+                            <h2 className="mt-1.5 sm:mt-2 truncate text-2xl sm:text-3xl font-bold text-[#4A2108]">
                                 {allReceipts.length}
                             </h2>
                         </div>
 
-                        <div className="rounded-xl bg-[#FFF3E2] p-3">
-                            <ReceiptText className="text-[#D88718]" />
+                        <div className="shrink-0 rounded-xl bg-[#FFF3E2] p-2.5 sm:p-3">
+                            <ReceiptText className="text-[#D88718]" size={20} />
                         </div>
                     </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#E7D4B4] bg-white p-5 shadow-sm">
-                    <div className="flex items-center justify-between">
+                <div className="rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white p-4 sm:p-5 shadow-sm">
+                    <div className="flex items-center justify-between gap-3">
 
-                        <div>
-                            <p className="text-sm text-[#9A6428]">Total Collection</p>
+                        <div className="min-w-0">
+                            <p className="text-xs sm:text-sm text-[#9A6428]">Total Collection</p>
 
-                            <h2 className="mt-2 text-3xl font-bold text-[#4A2108]">
+                            <h2 className="mt-1.5 sm:mt-2 truncate text-2xl sm:text-3xl font-bold text-[#4A2108]">
                                 ₹{totalCollection}
                             </h2>
                         </div>
 
-                        <div className="rounded-xl bg-[#FFF3E2] p-3">
-                            <IndianRupee className="text-[#D88718]" />
+                        <div className="shrink-0 rounded-xl bg-[#FFF3E2] p-2.5 sm:p-3">
+                            <IndianRupee className="text-[#D88718]" size={20} />
                         </div>
 
                     </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#E7D4B4] bg-white p-5 shadow-sm">
+                <div className="rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white p-4 sm:p-5 shadow-sm">
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-3">
 
-                        <div>
+                        <div className="min-w-0">
 
-                            <p className="text-sm text-[#9A6428]">
+                            <p className="text-xs sm:text-sm text-[#9A6428]">
                                 Cash Collection
                             </p>
 
-                            <h2 className="mt-2 text-3xl font-bold text-[#4A2108]">
+                            <h2 className="mt-1.5 sm:mt-2 truncate text-2xl sm:text-3xl font-bold text-[#4A2108]">
                                 ₹{cashCollection}
                             </h2>
 
                         </div>
 
-                        <div className="rounded-xl bg-[#FFF3E2] p-3">
-                            <Wallet className="text-[#D88718]" />
+                        <div className="shrink-0 rounded-xl bg-[#FFF3E2] p-2.5 sm:p-3">
+                            <Wallet className="text-[#D88718]" size={20} />
                         </div>
 
                     </div>
 
                 </div>
 
-                <div className="rounded-2xl border border-[#E7D4B4] bg-white p-5 shadow-sm">
+                <div className="rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white p-4 sm:p-5 shadow-sm">
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-3">
 
-                        <div>
+                        <div className="min-w-0">
 
-                            <p className="text-sm text-[#9A6428]">
+                            <p className="text-xs sm:text-sm text-[#9A6428]">
                                 UPI Collection
                             </p>
 
-                            <h2 className="mt-2 text-3xl font-bold text-[#4A2108]">
+                            <h2 className="mt-1.5 sm:mt-2 truncate text-2xl sm:text-3xl font-bold text-[#4A2108]">
                                 ₹{upiCollection}
                             </h2>
 
                         </div>
 
-                        <div className="rounded-xl bg-[#FFF3E2] p-3">
-                            <Smartphone className="text-[#D88718]" />
+                        <div className="shrink-0 rounded-xl bg-[#FFF3E2] p-2.5 sm:p-3">
+                            <Smartphone className="text-[#D88718]" size={20} />
                         </div>
 
                     </div>
@@ -211,14 +211,14 @@ function Receipts() {
 
             {/* Filters */}
 
-            <div className="rounded-2xl border border-[#E7D4B4] bg-white p-5 shadow-sm">
+            <div className="rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white p-3.5 sm:p-5 shadow-sm">
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
 
-                    <div className="relative flex-1 min-w-62.5">
+                    <div className="relative w-full sm:min-w-62.5 sm:flex-1">
 
                         <Search
-                            className="absolute left-4 top-1/2 -translate-y-1/2 text-[#A77B4A]"
+                            className="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 text-[#A77B4A]"
                             size={18}
                         />
 
@@ -227,51 +227,58 @@ function Receipts() {
                             placeholder="Search receipt, devotee or pooja..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] py-3 pl-11 pr-4 outline-none focus:border-[#D88718]"
+                            className="w-full rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] py-2.5 sm:py-3 pl-10 sm:pl-11 pr-4 text-sm sm:text-base outline-none focus:border-[#D88718]"
                         />
 
                     </div>
 
-                    <select
-                        value={paymentFilter}
-                        onChange={(e) => setPaymentFilter(e.target.value)}
-                        className="rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] px-4"
-                    >
-                        <option>All</option>
-                        <option>Cash</option>
-                        <option>UPI</option>
-                        <option>Card</option>
-                    </select>
+                    <div className="grid grid-cols-2 gap-3 sm:contents">
 
-                    <select
-                        value={poojaFilter}
-                        onChange={(e) => setPoojaFilter(e.target.value)}
-                        className="rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] px-4"
-                    >
-                        <option>All</option>
-                        <option>Ganapathi Homam</option>
-                        <option>Archana</option>
-                        <option>Milk Payasam</option>
-                        <option>Bhagya Suktha</option>
-                        <option>Neeranjanam</option>
-                        <option>Special Archana</option>
-                    </select>
+                        <select
+                            value={paymentFilter}
+                            onChange={(e) => setPaymentFilter(e.target.value)}
+                            className="w-full rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] px-3.5 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base sm:w-auto"
+                        >
+                            <option>All</option>
+                            <option>Cash</option>
+                            <option>UPI</option>
+                            <option>Card</option>
+                        </select>
 
-                    <select
-                        value={sortBy}
-                        onChange={(e) => setSortBy(e.target.value)}
-                        className="rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] px-4"
-                    >
-                        <option>Newest</option>
-                        <option>Oldest</option>
-                        <option>Amount High</option>
-                        <option>Amount Low</option>
-                    </select>
+                        <select
+                            value={poojaFilter}
+                            onChange={(e) => setPoojaFilter(e.target.value)}
+                            className="w-full rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] px-3.5 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base sm:w-auto"
+                        >
+                            <option>All</option>
+                            <option>Ganapathi Homam</option>
+                            <option>Archana</option>
+                            <option>Milk Payasam</option>
+                            <option>Bhagya Suktha</option>
+                            <option>Neeranjanam</option>
+                            <option>Special Archana</option>
+                        </select>
 
-                    <button onClick={handleExport} className="flex items-center gap-2 rounded-xl bg-[#D88718] px-5 text-white hover:bg-[#C67511]">
-                        <Download size={18} />
-                        Export
-                    </button>
+                        <select
+                            value={sortBy}
+                            onChange={(e) => setSortBy(e.target.value)}
+                            className="w-full rounded-xl border border-[#E5D2B2] bg-[#FFFDF8] px-3.5 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base sm:w-auto"
+                        >
+                            <option>Newest</option>
+                            <option>Oldest</option>
+                            <option>Amount High</option>
+                            <option>Amount Low</option>
+                        </select>
+
+                        <button
+                            onClick={handleExport}
+                            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#D88718] px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-base text-white transition hover:bg-[#C67511] sm:w-auto"
+                        >
+                            <Download size={18} />
+                            Export
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -281,7 +288,7 @@ function Receipts() {
 
 
             {/* Table */}
-            <div className="overflow-hidden rounded-2xl border border-[#E7D4B4] bg-white shadow-sm">
+            <div className="overflow-hidden rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white shadow-sm">
                 <div className="hidden lg:block w-full overflow-x-auto">
                     <table className="w-full">
                         <thead className="bg-[#FFF4E6]">
@@ -407,9 +414,9 @@ function Receipts() {
                     </table>
                 </div>
 
-                {/* mobile tavble */}
+                {/* mobile table */}
 
-                <div className="block lg:hidden space-y-4">
+                <div className="block lg:hidden space-y-3 sm:space-y-4 p-3 sm:p-4">
 
                     {filteredReceipts.length > 0 ? (
 
@@ -417,7 +424,7 @@ function Receipts() {
 
                             <div
                                 key={receipt._id}
-                                className="rounded-2xl border border-[#E7D4B4] bg-white p-4 shadow-sm"
+                                className="rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white p-3.5 sm:p-4 shadow-sm"
                             >
 
                                 {/* Top */}
@@ -426,23 +433,23 @@ function Receipts() {
 
                                     <div className="min-w-0 flex-1">
 
-                                        <p className="text-xs uppercase tracking-wide text-[#B08554]">
+                                        <p className="text-[10px] sm:text-xs uppercase tracking-wide text-[#B08554]">
                                             Receipt No.
                                         </p>
 
-                                        <h3 className="truncate text-base font-bold text-[#4A2108]">
+                                        <h3 className="truncate text-sm sm:text-base font-bold text-[#4A2108]">
                                             {receipt.receiptNumber}
                                         </h3>
 
                                     </div>
 
-                                    <div className="text-right">
+                                    <div className="shrink-0 text-right">
 
-                                        <p className="text-xs text-[#9A6428]">
+                                        <p className="text-[10px] sm:text-xs text-[#9A6428]">
                                             Amount
                                         </p>
 
-                                        <h3 className="text-lg font-bold text-[#D88718]">
+                                        <h3 className="text-base sm:text-lg font-bold text-[#D88718]">
                                             ₹{receipt.amount}
                                         </h3>
 
@@ -452,59 +459,59 @@ function Receipts() {
 
                                 {/* Divider */}
 
-                                <div className="my-4 border-t border-dashed border-[#E7D4B4]" />
+                                <div className="my-3 sm:my-4 border-t border-dashed border-[#E7D4B4]" />
 
                                 {/* Details */}
 
-                                <div className="space-y-3">
+                                <div className="space-y-2.5 sm:space-y-3">
 
-                                    <div className="flex justify-between gap-4">
+                                    <div className="flex items-start justify-between gap-3">
 
-                                        <span className="text-sm text-[#8A6537]">
+                                        <span className="shrink-0 text-xs sm:text-sm text-[#8A6537]">
                                             Devotee
                                         </span>
 
-                                        <span className="text-right font-medium text-[#4A2108]">
+                                        <span className="min-w-0 wrap-break-word text-right text-sm sm:text-base font-medium text-[#4A2108]">
                                             {receipt.name}
                                         </span>
 
                                     </div>
 
-                                    <div className="flex justify-between gap-4">
+                                    <div className="flex items-start justify-between gap-3">
 
-                                        <span className="text-sm text-[#8A6537]">
+                                        <span className="shrink-0 text-xs sm:text-sm text-[#8A6537]">
                                             Nakshatram
                                         </span>
 
-                                        <span className="text-right font-medium text-[#4A2108]">
+                                        <span className="min-w-0 wrap-break-word text-right text-sm sm:text-base font-medium text-[#4A2108]">
                                             {receipt.nakshatram}
                                         </span>
 
                                     </div>
 
-                                    <div className="flex justify-between gap-4">
+                                    <div className="flex items-center justify-between gap-3">
 
-                                        <span className="text-sm text-[#8A6537]">
+                                        <span className="shrink-0 text-xs sm:text-sm text-[#8A6537]">
                                             Pooja
                                         </span>
 
-                                        <span className="rounded-full bg-[#FFF4E4] px-3 py-1 text-xs font-semibold text-[#D88718]">
+                                        <span className="rounded-full bg-[#FFF4E4] px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-semibold text-[#D88718]">
                                             {receipt.pooja}
                                         </span>
 
                                     </div>
 
-                                    <div className="flex justify-between gap-4">
+                                    <div className="flex items-center justify-between gap-3">
 
-                                        <span className="text-sm text-[#8A6537]">
+                                        <span className="shrink-0 text-xs sm:text-sm text-[#8A6537]">
                                             Payment
                                         </span>
 
                                         {receipt.paymentType === "Cash" ? (
 
-                                            <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
+                                            <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-green-100 px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-medium text-green-700">
 
-                                                <Wallet size={14} />
+                                                <Wallet size={13} />
 
                                                 Cash
 
@@ -512,9 +519,9 @@ function Receipts() {
 
                                         ) : (
 
-                                            <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
+                                            <span className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-blue-100 px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-medium text-blue-700">
 
-                                                <Smartphone size={14} />
+                                                <Smartphone size={13} />
 
                                                 UPI
 
@@ -524,15 +531,15 @@ function Receipts() {
 
                                     </div>
 
-                                    <div className="flex justify-between gap-4">
+                                    <div className="flex items-center justify-between gap-3">
 
-                                        <span className="text-sm text-[#8A6537]">
+                                        <span className="shrink-0 text-xs sm:text-sm text-[#8A6537]">
                                             Date
                                         </span>
 
-                                        <span className="inline-flex items-center gap-2 text-sm text-[#4A2108]">
+                                        <span className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-[#4A2108]">
 
-                                            <CalendarDays size={15} />
+                                            <CalendarDays size={14} />
 
                                             {receipt.date}
 
@@ -544,19 +551,19 @@ function Receipts() {
 
                                 {/* Actions */}
 
-                                <div className="mt-5 grid grid-cols-2 gap-3">
+                                <div className="mt-4 sm:mt-5 grid grid-cols-2 gap-2.5 sm:gap-3">
 
-                                    <button className="flex items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 py-2.5 font-medium text-green-700 transition hover:bg-green-100">
+                                    <button className="flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-green-200 bg-green-50 py-2 sm:py-2.5 text-sm sm:text-base font-medium text-green-700 transition hover:bg-green-100">
 
-                                        <DownloadIcon size={18} />
+                                        <DownloadIcon size={16} />
 
                                         Download
 
                                     </button>
 
-                                    <button className="flex items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 py-2.5 font-medium text-red-700 transition hover:bg-red-100">
+                                    <button className="flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-red-200 bg-red-50 py-2 sm:py-2.5 text-sm sm:text-base font-medium text-red-700 transition hover:bg-red-100">
 
-                                        <Trash2 size={18} />
+                                        <Trash2 size={16} />
 
                                         Delete
 
@@ -570,24 +577,28 @@ function Receipts() {
 
                     ) : (
 
-                        <div className="rounded-2xl border border-[#E7D4B4] bg-white py-16 text-center">
+                        <div className="rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white py-12 sm:py-16 text-center">
 
-                            <div className="flex flex-col items-center gap-3">
+                            <div className="flex flex-col items-center gap-3 px-4">
 
-                                <div className="rounded-full bg-[#FFF3E2] p-5">
+                                <div className="rounded-full bg-[#FFF3E2] p-4 sm:p-5">
 
                                     <ReceiptText
+                                        size={36}
+                                        className="text-[#D88718] sm:hidden"
+                                    />
+                                    <ReceiptText
                                         size={42}
-                                        className="text-[#D88718]"
+                                        className="hidden text-[#D88718] sm:block"
                                     />
 
                                 </div>
 
-                                <h3 className="text-xl font-semibold text-[#4A2108]">
+                                <h3 className="text-lg sm:text-xl font-semibold text-[#4A2108]">
                                     No Receipts Found
                                 </h3>
 
-                                <p className="text-[#8D6A44]">
+                                <p className="text-sm sm:text-base text-[#8D6A44]">
                                     Try changing the search or filter options.
                                 </p>
 
@@ -601,11 +612,11 @@ function Receipts() {
             </div>
 
 
-            <div className="flex flex-col gap-4 rounded-2xl border border-[#E7D4B4] bg-white p-5 shadow-sm md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-4 rounded-xl sm:rounded-2xl border border-[#E7D4B4] bg-white p-3.5 sm:p-5 shadow-sm md:flex-row md:items-center md:justify-between">
 
                 <div>
 
-                    <p className="text-sm text-[#8A6537]">
+                    <p className="text-center text-xs sm:text-sm text-[#8A6537] md:text-left">
                         Showing
                         <span className="mx-1 font-semibold text-[#4A2108]">
                             {filteredReceipts.length}
@@ -619,33 +630,33 @@ function Receipts() {
 
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
 
-                    <button className="flex items-center gap-2 rounded-xl border border-[#E7D4B4] px-4 py-2 text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
+                    <button className="flex items-center gap-1 sm:gap-2 rounded-xl border border-[#E7D4B4] px-2.5 sm:px-4 py-2 text-xs sm:text-sm text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
 
-                        <ChevronLeft size={18} />
+                        <ChevronLeft size={16} />
 
-                        Previous
+                        <span className="hidden sm:inline">Previous</span>
 
                     </button>
 
-                    <button className="rounded-xl bg-[#D88718] px-4 py-2 font-semibold text-white">
+                    <button className="rounded-xl bg-[#D88718] px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white">
                         1
                     </button>
 
-                    <button className="rounded-xl border border-[#E7D4B4] px-4 py-2 text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
+                    <button className="rounded-xl border border-[#E7D4B4] px-3 sm:px-4 py-2 text-xs sm:text-sm text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
                         2
                     </button>
 
-                    <button className="rounded-xl border border-[#E7D4B4] px-4 py-2 text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
+                    <button className="rounded-xl border border-[#E7D4B4] px-3 sm:px-4 py-2 text-xs sm:text-sm text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
                         3
                     </button>
 
-                    <button className="flex items-center gap-2 rounded-xl border border-[#E7D4B4] px-4 py-2 text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
+                    <button className="flex items-center gap-1 sm:gap-2 rounded-xl border border-[#E7D4B4] px-2.5 sm:px-4 py-2 text-xs sm:text-sm text-[#7A4A1A] transition hover:bg-[#FFF5E7]">
 
-                        Next
+                        <span className="hidden sm:inline">Next</span>
 
-                        <ChevronRight size={18} />
+                        <ChevronRight size={16} />
 
                     </button>
 

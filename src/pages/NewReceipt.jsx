@@ -63,27 +63,27 @@ function NewReceipt() {
 
 
   return (
-    <div style={{ fontFamily: 'Gelasio' }} className="min-h-screen overflow-hidden bg-[#FFF8EE]">
+    <div style={{ fontFamily: 'Gelasio' }} className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#FFF8EE]">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mx-auto w-full max-w-7xl px-3.5 sm:px-6 py-5 sm:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <p className="uppercase tracking-[0.25em] text-sm text-[#C46E16] font-semibold">
+        <div className="mb-4 sm:mb-8">
+          <p className="text-[11px] sm:text-sm font-semibold uppercase tracking-[0.16em] sm:tracking-[0.25em] text-[#C46E16]">
             New Receipt
           </p>
         </div>
 
         {/* Content */}
-        <div className="grid md:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-12">
 
           {/* Left */}
-          <div className="md:col-span-8">
+          <div className="col-span-1 md:col-span-8">
             <ReceiptForm receipt={receipt} setReceipt={setReceipt} />
           </div>
 
           {/* Right */}
-          <div className="md:col-span-4">
+          <div className="col-span-1 md:col-span-4">
             <ReceiptPreview2
               setShowQueue={setShowQueue}
               receipt={receipt}
@@ -91,7 +91,7 @@ function NewReceipt() {
               receiptQueue={receiptQueue}
               setReceiptQueue={setReceiptQueue}
               setSelectedReceipt={setSelectedReceipt}
-              isEditing={isEditing} 
+              isEditing={isEditing}
               setIsEditing={setIsEditing}
             />
             <div className="hidden">

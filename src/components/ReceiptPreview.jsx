@@ -19,16 +19,6 @@ function ReceiptPreview({ receipt, setReceiptQueue, setSelectedReceipt }) {
   const addReceipt = () => {
     setReceiptQueue(prev => [...prev, receipt]);
     setSelectedReceipt(receipt);
-
-    setReceipt({
-      receiptNumber: "",
-      date: "",
-      name: "",
-      nakshatram: "",
-      pooja: "",
-      amount: "",
-      paymentType: ""
-    });
   };
 
   return (
@@ -37,32 +27,32 @@ function ReceiptPreview({ receipt, setReceiptQueue, setSelectedReceipt }) {
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-    }} className="sticky top-24 rounded-3xl border border-[#EEDBC1] bg-white p-6 shadow-[0_12px_35px_rgba(0,0,0,0.05)]">
+    }} className="static md:sticky md:top-24 w-full max-w-full rounded-2xl sm:rounded-3xl border border-[#EEDBC1] bg-white p-4 sm:p-6 md:p-8 shadow-[0_12px_35px_rgba(0,0,0,0.05)]">
 
       {/* Temple */}
       <div className="text-center">
 
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#FFE7C3] text-2xl">
+        <div className="mx-auto flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#FFE7C3] text-xl sm:text-2xl">
           🕉
         </div>
 
-        <h2 className="mt-3 font-gelasio text-lg font-semibold text-[#4A2108]">
+        <h2 className="mt-2.5 sm:mt-3 font-gelasio text-base sm:text-lg font-semibold text-[#4A2108]">
           SRI NARASIMHASWAMI
         </h2>
 
-        <p className="text-sm text-[#A77A4D]">
+        <p className="text-xs sm:text-sm text-[#A77A4D]">
           Temple Trust
         </p>
 
       </div>
 
-      <div className="my-6 border-t border-dashed border-[#EDD6B3]" />
+      <div className="my-4 sm:my-6 border-t border-dashed border-[#EDD6B3]" />
 
       {/* Details */}
 
-      <div className="rounded-2xl bg-[#FFFBF6]/25 p-4">
+      <div className="rounded-xl sm:rounded-2xl bg-[#FFFBF6]/25 p-3.5 sm:p-4">
 
-        <div className="space-y-3 text-sm">
+        <div className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
 
           {[
             ["Receipt", `${receipt.receiptNumber || "---"}`],
@@ -74,13 +64,13 @@ function ReceiptPreview({ receipt, setReceiptQueue, setSelectedReceipt }) {
           ].map(([label, value]) => (
             <div
               key={label}
-              className="flex items-center justify-between"
+              className="flex items-start justify-between gap-3"
             >
-              <span className="text-[#A77A4D]">
+              <span className="shrink-0 text-[#A77A4D]">
                 {label}
               </span>
 
-              <span className="font-medium text-[#3D220F]">
+              <span className="min-w-0 wrap-break-word text-right font-medium text-[#3D220F]">
                 {value}
               </span>
             </div>
@@ -92,33 +82,35 @@ function ReceiptPreview({ receipt, setReceiptQueue, setSelectedReceipt }) {
 
       {/* Total */}
 
-      <div className="my-4 bg-[#FFFBF6] flex items-center justify-between rounded-2xl  px-5 py-4">
-        <span className="text- font-semibold uppercase tracking-[0.18em] text-[#A77A4D]">
+      <div className="my-3.5 sm:my-4 flex items-center justify-between gap-3 rounded-xl sm:rounded-2xl bg-[#FFFBF6] px-4 py-3 sm:px-5 sm:py-4">
+        <span className="text-[11px] sm:text-sm font-semibold uppercase tracking-widest sm:tracking-[0.18em] text-[#A77A4D]">
           TOTAL AMOUNT
         </span>
 
-        <span className="text-lg font-semibold uppercase tracking-widest text-[#3D220F]">
+        <span className="shrink-0 text-base sm:text-lg font-semibold uppercase tracking-wide sm:tracking-widest text-[#3D220F]">
           ₹ {receipt.amount || '---'}
         </span>
       </div>
 
       {/* Buttons */}
-      <div className="flex gap-3 mt-4">
+      <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:gap-3">
         {!isPrinting && (
           <>
             <button
               onClick={handlePrint}
-              className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-[#D88718] to-[#F1A13A] py-3.5 text-sm font-semibold text-white"
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-linear-to-r from-[#D88718] to-[#F1A13A] py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-white"
             >
-              <Printer size={18} />
+              <Printer size={16} className="shrink-0 sm:hidden" />
+              <Printer size={18} className="hidden shrink-0 sm:block" />
               Print Receipt
             </button>
 
             <button
               onClick={addReceipt}
-              className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-green-600 py-3.5 text-sm font-semibold text-white"
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl sm:rounded-2xl bg-green-600 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-white"
             >
-              <ReceiptText size={18} />
+              <ReceiptText size={16} className="shrink-0 sm:hidden" />
+              <ReceiptText size={18} className="hidden shrink-0 sm:block" />
               Add Receipt
             </button>
           </>

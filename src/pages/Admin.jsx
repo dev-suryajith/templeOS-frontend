@@ -61,14 +61,14 @@ function AdminDashboard() {
 
       case "Reports":
         return (
-          <div className="flex h-full items-center justify-center text-2xl text-[#9A6428]">
+          <div className="flex h-full items-center justify-center text-center text-lg sm:text-2xl text-[#9A6428]">
             Reports Coming Soon
           </div>
         );
 
       case "Settings":
         return (
-          <div className="flex h-full items-center justify-center text-2xl text-[#9A6428]">
+          <div className="flex h-full items-center justify-center text-center text-lg sm:text-2xl text-[#9A6428]">
             Settings Coming Soon
           </div>
         );
@@ -79,7 +79,7 @@ function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF8EE]">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#FFF8EE]">
       <AdminNavbar />
 
       <div className="relative flex">
@@ -98,7 +98,7 @@ function AdminDashboard() {
         {!mobileSidebarOpen && (
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="fixed right-4 top-22 z-40 flex h-11 w-11 items-center justify-center rounded-xl border border-[#E8D7BC] bg-white shadow-lg lg:hidden"
+            className="fixed right-3.5 sm:right-4 top-20 sm:top-22 z-40 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl border border-[#E8D7BC] bg-white shadow-lg lg:hidden"
           >
             <Menu size={20} />
           </button>
@@ -126,7 +126,7 @@ function AdminDashboard() {
 
             ${collapsed ? "lg:w-20" : "lg:w-72"}
 
-            w-72
+            w-[80%] max-w-72
           `}
         >
           {/* Mobile Close */}
@@ -153,16 +153,16 @@ function AdminDashboard() {
 
           {/* Sidebar Header */}
 
-          <div className="border-b border-[#F2E3CA] p-6">
+          <div className="border-b border-[#F2E3CA] p-4 sm:p-6">
             {collapsed ? (
               <div className="text-center text-2xl">🕉</div>
             ) : (
               <>
-                <h2 className="font-gelasio text-xl font-bold text-[#4A2108]">
+                <h2 className="font-gelasio text-lg sm:text-xl font-bold text-[#4A2108] truncate">
                   Temple Admin
                 </h2>
 
-                <p className="mt-1 text-sm text-[#9A6428]">
+                <p className="mt-1 text-xs sm:text-sm text-[#9A6428]">
                   Management Panel
                 </p>
               </>
@@ -171,12 +171,12 @@ function AdminDashboard() {
 
           {/* Navigation */}
 
-          <nav className="space-y-2 p-4">
+          <nav className="space-y-1.5 sm:space-y-2 p-3 sm:p-4">
             {menuItems.map((item, index) => (
               <button
                 key={index}
                 onClick={() => handlePanelChange(item.label)}
-                className={`flex w-full items-center rounded-xl px-4 py-3 transition-all hover:bg-[#FFF2DF] hover:text-[#D88718] ${
+                className={`flex w-full items-center rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 transition-all hover:bg-[#FFF2DF] hover:text-[#D88718] ${
                   panel === item.label
                     ? "bg-[#FFF2DF] text-[#D88718]"
                     : "text-[#6B4A27]"
@@ -185,7 +185,7 @@ function AdminDashboard() {
                 {item.icon}
 
                 {!collapsed && (
-                  <span className="ml-4 font-medium">
+                  <span className="ml-3.5 sm:ml-4 truncate font-medium">
                     {item.label}
                   </span>
                 )}
@@ -196,17 +196,17 @@ function AdminDashboard() {
 
         {/* Main Content */}
 
-        <main className="flex-1 p-4 md:p-6 lg:p-8">
+        <main className="min-w-0 w-full flex-1 p-3.5 sm:p-4 md:p-6 lg:p-8">
 
           {/* Header */}
 
-          <div className="mb-8">
+          <div className="mb-5 sm:mb-8">
 
-            <p className="uppercase tracking-[0.25em] text-sm font-semibold text-[#C46E16]">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] sm:tracking-[0.25em] text-[#C46E16]">
               {panel}
             </p>
 
-            <h1 className="mt-2 text-2xl md:text-3xl font-bold text-[#4A2108]">
+            <h1 className="mt-1.5 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-bold text-[#4A2108] wrap-break-word">
               {panel === "dashboard"
                 ? "Temple Administration"
                 : panel}
@@ -216,7 +216,7 @@ function AdminDashboard() {
 
           {/* Dynamic Content */}
 
-          <div className="min-h-125 lg:min-h-162.5 rounded-3xl border border-[#E8D7BC] bg-[#FFFDF8] p-6">
+          <div className="min-h-125 lg:min-h-162.5 w-full max-w-full overflow-x-auto rounded-2xl sm:rounded-3xl border border-[#E8D7BC] bg-[#FFFDF8] p-3.5 sm:p-6">
             {renderContent()}
           </div>
 
