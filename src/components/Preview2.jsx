@@ -2,8 +2,7 @@ import { Printer, ReceiptText } from "lucide-react";
 import { useState } from "react";
 import receiptBG from "../assets/image/receipt-bg.png";
 
-function ReceiptPreview({ isEditing, setIsEditing, setShowQueue, receipt, setReceipt, receiptQueue, setReceiptQueue, setSelectedReceipt, onPrint }) {
-  const [isPrinting, setPrinting] = useState(false);
+function ReceiptPreview({ isEditing, setIsEditing, setShowQueue, receipt, setReceipt, receiptQueue, setReceiptQueue, setSelectedReceipt }) {
 
   const addReceipt = () => {
     // Validation

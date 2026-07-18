@@ -25,6 +25,7 @@ function NewReceipt() {
       setTimeout(() => {
         printReceipt()
       }, 500)
+      setShowQueue(false)
     }
   }
 
