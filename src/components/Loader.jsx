@@ -10,31 +10,29 @@ function Loader() {
         },5000)
     })
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-[#FFF9F2]">
+        <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#FFF9F2]">
 
-            <div className="text-center">
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/005/200/720/small_2x/induism-symbol-om-sign-icon-black-color-illustration-flat-style-simple-image-vector.jpg"
+        className="mb-6 h-20 w-20 rounded-full"
+        alt=""
+      />
 
-                <div className="mx-auto flex h-28 w-28 animate-pulse items-center justify-center rounded-full bg-[#E39A2D] shadow-2xl">
+      <h1 className="font-gelasio text-3xl font-bold text-[#43200C]">
+        Sri Narasimhaswami Temple
+      </h1>
 
-                    <img
-                        src="https://static.vecteezy.com/system/resources/thumbnails/005/200/720/small_2x/induism-symbol-om-sign-icon-black-color-illustration-flat-style-simple-image-vector.jpg"
-                        className="h-16 w-16 rounded-full"
-                        alt=""
-                    />
+      <p className="mt-2 text-[#B66B18]">
+        Preparing Workspace...
+      </p>
 
-                </div>
+      <div className="mt-8 h-2 w-64 overflow-hidden rounded-full bg-[#F3D4A6]">
 
-                <h1 className="mt-8 font-gelasio text-3xl font-bold text-[#43200C]">
-                    TempleOS
-                </h1>
+        <div className="h-full w-1/3 animate-pulse rounded-full bg-[#D88718]" />
 
-                <p className="mt-2 text-[#C97A1B]">
-                    Loading...
-                </p>
+      </div>
 
-            </div>
-
-        </div>
+    </div>
     );
 }
 
