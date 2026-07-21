@@ -1,30 +1,23 @@
 import AdminNavbar from "@/components/admin/AdminNavbar";
-import {
-  ChevronLeft,
-  ChevronRight,
-  LayoutDashboard,
-  ReceiptText,
-  BarChart3,
-  Settings,
-  ScrollText,
-  Menu,
-  X,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutDashboard, ReceiptText,ScrollText,Menu, X, UserIcon, Banknote, } from "lucide-react";
 import DashboardPanel from "@/components/admin/Dashboard";
 import PoojaList from "@/components/admin/PoojaList";
 import Receipts from "@/components/admin/Receipts";
+import Report from "@/components/admin/Report";
 import React, { useState } from "react";
+import Users from "@/components/admin/Users";
+import PaymentList from "@/components/admin/PaymentList";
 
 function AdminDashboard() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-  const [panel, setPanel] = useState("dashboard");
+  const [panel, setPanel] = useState("Receipts");
 
   const menuItems = [
-    {
-      icon: <LayoutDashboard size={20} />,
-      label: "dashboard",
-    },
+    // {
+    //   icon: <LayoutDashboard size={20} />,
+    //   label: "dashboard",
+    // },
     {
       icon: <ReceiptText size={20} />,
       label: "Receipts",
@@ -34,13 +27,17 @@ function AdminDashboard() {
       label: "Poojas",
     },
     {
-      icon: <BarChart3 size={20} />,
-      label: "Reports",
+      icon: <Banknote size={20} />,
+      label: "Payments",
     },
     {
-      icon: <Settings size={20} />,
-      label: "Settings",
+      icon: <UserIcon size={20} />,
+      label: "Users",
     },
+    // {
+    //   icon: <Settings size={20} />,
+    //   label: "Settings",
+    // },
   ];
 
   const handlePanelChange = (label) => {
@@ -59,13 +56,11 @@ function AdminDashboard() {
       case "Poojas":
         return <PoojaList />;
 
-      case "Reports":
-        return (
-          <div className="flex h-full items-center justify-center text-center text-lg sm:text-2xl text-[#9A6428]">
-            Reports Coming Soon
-          </div>
-        );
+      case "Payments":
+        return <PaymentList />;
 
+      case "Users":
+        return <Users />;
       case "Settings":
         return (
           <div className="flex h-full items-center justify-center text-center text-lg sm:text-2xl text-[#9A6428]">
@@ -118,10 +113,9 @@ function AdminDashboard() {
             shadow-sm
             transition-all duration-300
 
-            ${
-              mobileSidebarOpen
-                ? "translate-x-0"
-                : "-translate-x-full lg:translate-x-0"
+            ${mobileSidebarOpen
+              ? "translate-x-0"
+              : "-translate-x-full lg:translate-x-0"
             }
 
             ${collapsed ? "lg:w-20" : "lg:w-72"}
@@ -176,11 +170,10 @@ function AdminDashboard() {
               <button
                 key={index}
                 onClick={() => handlePanelChange(item.label)}
-                className={`flex w-full items-center rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 transition-all hover:bg-[#FFF2DF] hover:text-[#D88718] ${
-                  panel === item.label
-                    ? "bg-[#FFF2DF] text-[#D88718]"
-                    : "text-[#6B4A27]"
-                }`}
+                className={`flex w-full items-center rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 transition-all hover:bg-[#FFF2DF] hover:text-[#D88718] ${panel === item.label
+                  ? "bg-[#FFF2DF] text-[#D88718]"
+                  : "text-[#6B4A27]"
+                  }`}
               >
                 {item.icon}
 
@@ -202,14 +195,8 @@ function AdminDashboard() {
 
           <div className="mb-5 sm:mb-8">
 
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] sm:tracking-[0.25em] text-[#C46E16]">
+            <h1 className="mt-1.5 sm:mt-2 uppercase text-xl sm:text-2xl md:text-3xl font-bold text-[#C46E16] wrap-break-word">
               {panel}
-            </p>
-
-            <h1 className="mt-1.5 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-bold text-[#4A2108] wrap-break-word">
-              {panel === "dashboard"
-                ? "Temple Administration"
-                : panel}
             </h1>
 
           </div>

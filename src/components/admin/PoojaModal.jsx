@@ -1,17 +1,64 @@
 import { useEffect, useState } from "react";
+import { addPoojaAPI, editPoojaAPI, } from "../../../services/allAPI";
 import { X, IndianRupee, ScrollText } from "lucide-react";
 
-function PoojaModal({
-    show,
-    onClose,
-    isEditing,
-    pooja,
-}) {
+function PoojaModal({ show, onClose, isEditing, pooja, onSaved, }) {
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         price: "",
     });
+
+    const handleSubmit = async () => {
+
+        if (
+            !formData.name.trim() ||
+            !formData.description.trim() ||
+            !formData.price
+        ) {
+            alert("Please fill all fields.");
+            return;
+        }
+
+        try {
+
+            setLoading(true);
+
+            let result;
+
+            if (isEditing) {
+
+                result = await editPoojaAPI(
+                    pooja._id,
+                    formData
+                );
+
+            } else {
+
+                result = await addPoojaAPI(formData);
+
+            }
+
+            if (result.status === 200 || result.status === 201) {
+
+                onSaved();
+
+                onClose();
+
+            }
+
+        } catch (err) {
+
+            console.log(err);
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    };
 
     useEffect(() => {
         if (isEditing && pooja) {
@@ -152,6 +199,7 @@ function PoojaModal({
 
                             <input
                                 type="number"
+                                min={1}
                                 placeholder="0"
                                 value={formData.price}
                                 onChange={(e) =>
@@ -174,18 +222,31 @@ function PoojaModal({
                 <div className="sticky bottom-0 flex flex-col-reverse gap-3 border-t border-[#E9DCC6] bg-white px-6 py-5 sm:flex-row sm:justify-end">
 
                     <button
-                        onClick={onClose}
+                        onClick={() => {
+                            setFormData({
+                                name: "",
+                                description: "",
+                                price: "",
+                            });
+                            onClose();
+                        }}
                         className="rounded-xl border border-[#D8BE93] px-6 py-3 font-medium text-[#6D4B23] transition hover:bg-[#FFF5E8]"
                     >
                         Cancel
                     </button>
 
                     <button
-                        className="rounded-xl bg-[#D88718] px-6 py-3 font-medium text-white transition hover:bg-[#C77712]"
+                        disabled={loading}
+                        onClick={handleSubmit}
+                        className="rounded-xl bg-[#D88718] px-6 py-3 font-medium text-white transition hover:bg-[#C77712] disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                        {isEditing
-                            ? "Update Pooja"
-                            : "Create Pooja"}
+                        {
+                            loading
+                                ? "Saving..."
+                                : isEditing
+                                    ? "Update Pooja"
+                                    : "Create Pooja"
+                        }
                     </button>
 
                 </div>

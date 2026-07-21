@@ -309,7 +309,7 @@ function ReceiptPreview({ isEditing, setIsEditing, setShowQueue, receipt, setRec
             onClick={() => setShowQueue(true)}
             className="w-full sm:w-auto rounded-xl bg-[#D88718] px-4 py-2.5 sm:py-2 text-sm text-white"
           >
-            View Receipts
+            Pay Now
           </button>
         )}
         {isEditing ?

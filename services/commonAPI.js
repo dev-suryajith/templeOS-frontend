@@ -1,13 +1,28 @@
 import axios from "axios";
 
-const commonAPI = async (httpRequest, url, reqBody, reqHeader = {}, axiosConfig = {}) => {
-    // console.log(">>> API CALLED:", url); // DEBUG
+const commonAPI = async (
+    httpRequest,
+    url,
+    reqBody,
+    reqHeader = {},
+    axiosConfig = {}
+) => {
+
+    const token = localStorage.getItem("token");
+
+    const headers = {
+        ...reqHeader,
+    };
+
+    if (token) {
+        headers.Authorization = `Bearer ${token}`;
+    }
 
     const requestConfig = {
         method: httpRequest,
         url,
         data: reqBody,
-        headers: reqHeader,
+        headers,
         ...axiosConfig
     };
 

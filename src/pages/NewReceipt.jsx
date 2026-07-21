@@ -5,8 +5,10 @@ import ReceiptPreview from "../components/ReceiptPreview";
 import ReceiptPreview2 from "../components/Preview2";
 import PrintableReceipts from "@/components/PrintableReceipts";
 import { useReactToPrint } from "react-to-print";
-import { generateReceiptNumberAPI, saveReceiptsAPI } from "../../services/allAPI";
+import { createPaymentAPI, saveReceiptsAPI, generateReceiptNumberAPI } from "../../services/allAPI"
 import ReceiptQueueModal from "@/components/ReceiptQueueModal";
+import PaymentModal from "@/components/payment/PaymentModal";
+
 
 function NewReceipt() {
 
@@ -15,19 +17,78 @@ function NewReceipt() {
   const [selectedReceipt, setSelectedReceipt] = useState(null);
   const [isEditing, setIsEditing] = useState(false)
 
+  const [paymentOpen, setPaymentOpen] = useState(false);
+  const [paymentData, setPaymentData] = useState({
+    orderId: "",
+    qrData: "",
+    amount: 0,
+  });
+
   const receiptRef = useRef(null);
   const printReceipt = useReactToPrint({ contentRef: receiptRef, });
 
   const onPrintReceipt = async () => {
-    const res = await saveReceiptsAPI(receiptQueue)
-    if (res.status == 200) {
-      alert(res.data)
-      setTimeout(() => {
-        printReceipt()
-      }, 500)
-      setShowQueue(false)
+    try {
+      const totalAmount = receiptQueue.reduce(
+        (total, receipt) => total + Number(receipt.amount),
+        0
+      );
+
+      const paymentType = receiptQueue[0].paymentType
+      const response = await createPaymentAPI({
+        amount: totalAmount,
+        receiptNumber: receiptQueue[0]?.receiptNumber,
+        paymentType
+      });
+
+      if (!response.data.success) {
+        alert("Unable to create payment.");
+        return;
+      }
+
+      setPaymentData({
+        orderId: response.data.orderId,
+        qrData: response.data.qrData,
+        amount: totalAmount,
+        paymentType
+      });
+
+      setPaymentOpen(true)
+
+    } catch (err) {
+      console.error(err);
+      alert("Unable to start payment.");
     }
-  }
+  };
+
+  const handlePaymentSuccess = async () => {
+
+    console.log(receiptQueue);
+
+    try {
+
+      const save = await saveReceiptsAPI(receiptQueue);
+
+      if (save.status === 200) {
+
+        printReceipt();
+
+        setPaymentOpen(false);
+
+        setShowQueue(false);
+
+        setReceiptQueue([]);
+
+        generateReceiptNumber();
+
+      }
+
+    } catch (err) {
+
+      console.log(err);
+
+    }
+  };
 
   const [receipt, setReceipt] = useState({
     receiptNumber: "",
@@ -114,6 +175,17 @@ function NewReceipt() {
         onClose={() => setShowQueue(false)}
         setIsEditing={setIsEditing}
         setReceipt={setReceipt}
+      />
+
+      <PaymentModal
+        open={paymentOpen}
+        onClose={() => setPaymentOpen(false)}
+        amount={paymentData.amount}
+        orderId={paymentData.orderId}
+        qrData={paymentData.qrData}
+        paymentType={paymentData.paymentType}
+        receiptCount={receiptQueue.length}
+        onSuccess={handlePaymentSuccess}
       />
     </div>
   );

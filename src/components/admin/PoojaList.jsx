@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Search, Plus, SquarePen, Trash2, ReceiptText } from "lucide-react";
-import { getAllPoojaAPI } from "../../../services/allAPI";
+import { deletePoojaAPI, getAllPoojaAPI } from "../../../services/allAPI";
 import PoojaModal from "./PoojaModal";
 
 function PoojaList() {
@@ -8,6 +8,12 @@ function PoojaList() {
     const [showModal, setShowModal] = useState(false)
     const [isEditing, setIsEditing] = useState(false)
     const [selectedPooja, setSelectedPooja] = useState(null)
+    const [search, setSearch] = useState("");
+
+    const filteredPooja = allPooja.filter((pooja) =>
+        pooja.name.toLowerCase().includes(search.toLowerCase()) ||
+        pooja.description.toLowerCase().includes(search.toLowerCase())
+    );
 
     const getAllPooja = async () => {
         try {
@@ -24,6 +30,44 @@ function PoojaList() {
     useEffect(() => {
         getAllPooja()
     }, [])
+
+
+    const handleAdd = () => {
+        setSelectedPooja(null);
+        setIsEditing(false);
+        setShowModal(true);
+    };
+
+    const handleEdit = (pooja) => {
+        setSelectedPooja(pooja);
+        setIsEditing(true);
+        setShowModal(true);
+    };
+
+    const handleDelete = async (id) => {
+        if (!window.confirm("Delete this user?")) return;
+
+        try {
+
+            const result = await deletePoojaAPI(id);
+
+            if (result.status === 200) {
+                getAllPooja();
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
+
+    const handleSaved = () => {
+        setShowModal(false);
+        setSelectedPooja(null);
+        setIsEditing(false);
+        getAllPooja();
+    };
     return (
         <div className="space-y-4 sm:space-y-6">
 
@@ -40,6 +84,8 @@ function PoojaList() {
 
                     <input
                         type="text"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search pooja..."
                         className="w-full rounded-xl border border-[#E5D2B2] bg-white py-2.5 sm:py-3 pl-10 sm:pl-11 pr-4 text-sm sm:text-base outline-none transition focus:border-[#D88718]"
                     />
@@ -47,7 +93,7 @@ function PoojaList() {
                 </div>
 
                 <button
-                    onClick={() => (setSelectedPooja(null), setIsEditing(false), setShowModal(true))}
+                    onClick={() => (setSelectedPooja(null), handleAdd(), setIsEditing(false), setShowModal(true))}
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#D88718] px-5 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-white transition hover:bg-[#C67610] md:w-auto">
 
                     <Plus size={18} />
@@ -92,8 +138,8 @@ function PoojaList() {
 
                         <tbody>
 
-                            {allPooja.length > 0 ? (
-                                allPooja.map(pooja => (
+                            {filteredPooja.length > 0 ? (
+                                filteredPooja.map(pooja => (
                                     <tr key={pooja._id} className="border-t border-[#F2E3CB] hover:bg-[#FFFDF9]">
 
                                         <td className="px-4 py-5 font-semibold text-[#4A2108] lg:px-6">
@@ -116,7 +162,7 @@ function PoojaList() {
                                             <div className="flex justify-center gap-2">
 
                                                 <button
-                                                    onClick={() => (setSelectedPooja(pooja), setIsEditing(true), setShowModal(true))}
+                                                    onClick={() => (setSelectedPooja(pooja), setIsEditing(true), handleEdit(pooja), setShowModal(true))}
                                                     className="rounded-lg border border-yellow-200 bg-yellow-50 p-2 transition hover:bg-yellow-100"
                                                     title="Edit"
                                                 >
@@ -127,6 +173,7 @@ function PoojaList() {
                                                 </button>
 
                                                 <button
+                                                    onClick={() => handleDelete(pooja._id)}
                                                     className="rounded-lg border border-red-200 bg-red-50 p-2 transition hover:bg-red-100"
                                                     title="Delete"
                                                 >
@@ -190,9 +237,9 @@ function PoojaList() {
 
             <div className="space-y-3 md:hidden">
 
-                {allPooja.length > 0 ? (
+                {filteredPooja.length > 0 ? (
 
-                    allPooja.map((pooja) => (
+                    filteredPooja.map((pooja) => (
 
                         <div
                             key={pooja._id}
@@ -240,6 +287,7 @@ function PoojaList() {
                                 </button>
 
                                 <button
+                                    onClick={() => handleDelete(pooja._id)}
                                     className="flex items-center justify-center gap-1.5 rounded-xl border border-red-200 bg-red-50 py-2 text-sm font-medium text-red-700 transition hover:bg-red-100 sm:gap-2 sm:py-2.5"
                                 >
                                     <Trash2 size={16} />
@@ -292,7 +340,7 @@ function PoojaList() {
                 onClose={() => setShowModal(false)}
                 isEditing={isEditing}
                 pooja={selectedPooja}
-                getAllPooja={getAllPooja}
+                onSaved={handleSaved}
             />
 
         </div>
