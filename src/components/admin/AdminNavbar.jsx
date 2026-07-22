@@ -1,10 +1,20 @@
 import React from "react";
-import {
-  LogOutIcon,
-  ShieldCheck,
-} from "lucide-react";
+import { LogOut, LogOutIcon, ShieldCheck, } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function AdminNavbar() {
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem('user'))
+console.log(user);
+
+  const handleLogout = () => {
+
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    navigate('/login')
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b-4 border-[#F3D4A6] bg-white/95 backdrop-blur-md shadow-sm">
 
@@ -61,7 +71,7 @@ function AdminNavbar() {
 
             <span className="hidden text-sm font-medium text-[#C46E16] sm:inline">
 
-              Admin
+              {user.name || 'Admin'}
 
             </span>
 
@@ -71,6 +81,7 @@ function AdminNavbar() {
 
           <button
             title="Logout"
+            onClick={handleLogout}
             className="flex h-11 w-11 items-center justify-center rounded-full border border-[#F1D5AF] bg-[#FFF8EF] text-[#C46E16] transition-all duration-200 hover:bg-[#FFF2DF] hover:scale-105 active:scale-95"
           >
 

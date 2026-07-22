@@ -6,6 +6,13 @@ function Navbar() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    navigate('/login')
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b-4 border-[#F3D4A6] bg-white shadow-sm">
       <div className="mx-auto flex h-18 md:h-20 max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -77,7 +84,7 @@ function Navbar() {
 
                 <div className="border-t border-[#EEDBC1]" />
 
-                <button className="w-full px-5 py-4 text-left text-red-600 transition hover:bg-red-50">
+                <button onClick={handleLogout} className="w-full px-5 py-4 text-left text-red-600 transition hover:bg-red-50">
                   Logout
                 </button>
 

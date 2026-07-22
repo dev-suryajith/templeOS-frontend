@@ -28,7 +28,7 @@ function Login() {
       if (result.status === 200) {
         localStorage.setItem("token", result.data.token);
         localStorage.setItem(
-          "existingUser",
+          "user",
           JSON.stringify(result.data.user)
         );
 
